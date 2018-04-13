@@ -2,10 +2,10 @@ module.exports = (client) => {
     // Credit: https://github.com/AnIdiotsGuide/guidebot/blob/master/modules/functions.js
     /*
     PERMISSION LEVEL FUNCTION
-    This is a very basic permission system for commands which uses 'levels'
-    'spaces' are intentionally left black so you can add them if you want.
-    NEVER GIVE ANYONE BUT OWNER THE LEVEL 10! By default this can run any
-    command including the VERY DANGEROUS `eval` and `exec` commands!
+		This is a very basic permission system for commands which uses 'levels'
+		'spaces' are intentionally left black so you can add them if you want.
+		NEVER GIVE ANYONE BUT OWNER THE LEVEL 10! By default this can run any
+		command including the VERY DANGEROUS `eval` and `exec` commands!
     */
     client.permlevel = message => {
 		let permlvl = 0;
@@ -16,8 +16,8 @@ module.exports = (client) => {
 			const currentLevel = permOrder.shift();
 			if (message.guild && currentLevel.guildOnly) continue;
 			if (currentLevel.check(message)) {
-			  permlvl = currentLevel.level;
-			break;
+			  	permlvl = currentLevel.level;
+				break;
 			}
 		}
 		return permlvl;
@@ -25,28 +25,28 @@ module.exports = (client) => {
   
     /*
     GUILD SETTINGS FUNCTION
-    This function merges the default settings (from config.defaultSettings) with any
-    guild override you might have for particular guild. If no overrides are present,
-    the default settings are used.
+		This function merges the default settings (from config.defaultSettings) with any
+		guild override you might have for particular guild. If no overrides are present,
+		the default settings are used.
     */
     client.getGuildSettings = (guild) => {
-      const def = client.config.defaultSettings;
-      if (!guild) return def;
-      const returns = {};
-      const overrides = client.settings.get(guild.id) || {};
-      for (const key in def) {
-        returns[key] = overrides[key] || def[key];
-      }
-      return returns;
+		const def = client.config.defaultSettings;
+		if (!guild) return def;
+		const returns = {};
+		const overrides = client.settings.get(guild.id) || {};
+		for (const key in def) {
+			returns[key] = overrides[key] || def[key];
+		}
+		return returns;
     };
   
     /*
     SINGLE-LINE AWAITMESSAGE
-    A simple way to grab a single reply, from the user that initiated
-    the command. Useful to get 'precisions' on certain things...
-    USAGE
-    const response = await client.awaitReply(msg, 'Favourite Color?');
-    msg.reply(`Oh, I really love ${response} too!`);
+		A simple way to grab a single reply, from the user that initiated
+		the command. Useful to get 'precisions' on certain things...
+		USAGE
+		const response = await client.awaitReply(msg, 'Favourite Color?');
+		msg.reply(`Oh, I really love ${response} too!`);
     */
     client.awaitReply = async (msg, question, limit = 60000) => {
 		const filter = m => m.author.id === msg.author.id;
@@ -102,7 +102,7 @@ module.exports = (client) => {
 			command = client.commands.get(commandName);
 		} else if (client.aliases.has(commandName)) {
 			command = client.commands.get(client.aliases.get(commandName));
-		}
+		};
 		if (!command) return `The command \`${commandName}\` doesn't seem to exist, nor is it an alias. Try again!`;
 		
 		if (command.shutdown) {
