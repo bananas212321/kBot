@@ -9,7 +9,7 @@ const readdir = promisify(require('fs').readdir);
 const client = new Discord.Client();
 
 client.config = require('./config.js');
-client.logger = require('./util/Logger');
+client.logger = require('./util/logger.js');
 
 client.commands = new Enmap(); // Save the commands to an Enmap
 client.aliases = new Enmap(); // Save the aliases of the commands to an Enmap
@@ -20,13 +20,13 @@ client.settings = new Enmap({
     })
 });
 
-require("./modules/functions.js")(client);
+require('./modules/functions.js')(client);
 
 const init = async () => {
     // Here we load **commands** into memory, as a collection, so they're accessible
     // here and everywhere else.
     const cmdFiles = await readdir('./commands/');
-    client.logger.log(`Loading ${cmdFiles.length} commands.`);
+    client.logger.log(`Loading ${cmdFiles.length} commands.`, 'notice');
     await cmdFiles.forEach(async (f) => {
         if (!f.endsWith('.js')) return;
         const start = new Date().getTime();
@@ -36,10 +36,9 @@ const init = async () => {
         client.logger.log(`${f} (Time taken: ~${time}ms)`, 'loaded');
         /// if (response) console.log(response);
     });
-    
+    console.log('\n');
     // Then we load events, which will include our message and ready event.
     const evtFiles = await readdir('./events/');
-    console.log('\n');
     client.logger.log(`Loading ${evtFiles.length} events.`, 'notice');
 
     await evtFiles.forEach(async (f) => {
@@ -53,6 +52,7 @@ const init = async () => {
         client.on(eventName, event.bind(null, client));
         delete require.cache[require.resolve(`./events/${f}`)];
     });
+    console.log('\n');
     
     // Generate a cache of client permissions for pretty perms
     client.levelCache = {};

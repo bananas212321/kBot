@@ -1,3 +1,3 @@
 module.exports = (client, e) => {
-	client.logger.log(`${e}`, 'error');
+	client.logger.log(`${e.message}`, 'error');
 };
