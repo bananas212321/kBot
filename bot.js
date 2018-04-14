@@ -1,3 +1,4 @@
+/* eslint-disable no-console, no-undef */
 const Discord = require('discord.js');
 
 const Enmap = require('enmap');
@@ -20,22 +21,9 @@ client.settings = new Enmap({
     })
 });
 
-client.glitch = new Discord.Collection();
-
 require('./modules/functions.js')(client);
 
 const init = async () => {
-    const glitchFiles = await readdir('./glitch/');
-    glitchFiles.forEach(file => {
-        if (!file.endsWith('.js')) return;
-        const start = new Date().getTime();
-        let glitch = require(`./glitch/${file}`);
-        const end = new Date().getTime();
-        const time = end - start;
-        client.logger.log(`${file} (Time taken: ~${time}ms)`, 'loaded');
-    });
-    console.log('\n');
-
     // Here we load **commands** into memory, as a collection, so they're accessible
     // here and everywhere else.
     const cmdFiles = await readdir('./commands/');
@@ -76,13 +64,29 @@ const init = async () => {
   
     // Here we login the client.
     client.login(client.config.token);
-  
   // End top-level async/await function.
 };
 
 try {
     init();
+    const express = require('express');
+    const app = express();
+    const moment = require('moment');
+    const chalk = require('chalk');
+    const timestamp = `[${moment().format('YYYY-MM-DD HH:mm:ss')}]`;
+
+    app.get('/', (request, response) => {
+      console.log(`${timestamp}: ${chalk.green('PING')}`);
+      response.sendStatus(200);
+    });
+
+    app.listen(process.env.PORT);
+
+    setInterval(() => {
+      http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+    }, 280000);
 } catch (e) {
     client.logger.error(e.stack);
-    return process.exit(1);
+    client.logger.error('Shutting down...');
+    process.exit(1);
 }
