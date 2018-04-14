@@ -49,7 +49,7 @@ const init = async () => {
         client.logger.log(`${f} (Time taken: ~${time}ms)`, 'loaded');
         /// if (response) console.log(response);
     });
-    console.log('\n');
+    console.log('');
     // Then we load events, which will include our message and ready event.
     const evtFiles = await readdir('./events/');
     client.logger.log(`Loading ${evtFiles.length} events.`, 'notice');
@@ -65,7 +65,7 @@ const init = async () => {
         client.on(eventName, event.bind(null, client));
         delete require.cache[require.resolve(`./events/${f}`)];
     });
-    console.log('\n');
+    console.log('');
     
     // Generate a cache of client permissions for pretty perms
     client.levelCache = {};
