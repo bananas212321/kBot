@@ -20,9 +20,22 @@ client.settings = new Enmap({
     })
 });
 
+client.glitch = new Discord.Collection();
+
 require('./modules/functions.js')(client);
 
 const init = async () => {
+    const glitchFiles = await readdir('./glitch/');
+    glitchFiles.forEach(file => {
+        if (!file.endsWith('.js')) return;
+        const start = new Date().getTime();
+        let glitch = require(`./glitch/${file}`);
+        const end = new Date().getTime();
+        const time = end - start;
+        client.logger.log(`${file} (Time taken: ~${time}ms)`, 'loaded');
+    });
+    console.log('\n');
+
     // Here we load **commands** into memory, as a collection, so they're accessible
     // here and everywhere else.
     const cmdFiles = await readdir('./commands/');
