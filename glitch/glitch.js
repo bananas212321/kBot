@@ -5,7 +5,6 @@ const moment = require('moment');
 const chalk = require('chalk');
 const timestamp = `[${moment().format('YYYY-MM-DD HH:mm:ss')}]`;
 
-
 app.get('/', (request, response) => {
 	console.log(`${timestamp}: ${chalk.green('PING')}`);
 	response.sendStatus(200);
