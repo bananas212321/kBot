@@ -32,6 +32,9 @@ exports.log = (content, type = 'log') => {
 	case 'loaded': {
 		return console.log(`${timestamp} ${chalk.black.bgGreen(type.toUpperCase())} ${content} `);
 	}
+	case 'unloaded': {
+		return console.log(`${timestamp} ${chalk.black.bgWhite(type.toUpperCase())} ${content} `);
+	}
 	case 'reconnecting': {
 		return console.log(`${timestamp} ${chalk.black.bgYellow(type.toUpperCase())} ${content} `);
 	}
