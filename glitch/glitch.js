@@ -1,9 +1,13 @@
 /* eslint-disable no-console, no-undef */
 const express = require('express');
 const app = express();
+const moment = require('moment');
+const chalk = require('chalk');
+const timestamp = `[${moment().format('YYYY-MM-DD HH:mm:ss')}]`;
+
 
 app.get('/', (request, response) => {
-	console.info(`${Date.now()} Ping Received`);
+	console.log(`${timestamp}: ${chalk.green('PING')}`);
 	response.sendStatus(200);
 });
 
