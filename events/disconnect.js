@@ -1,5 +1,6 @@
 module.exports = async (client, eventDetails) => {
-	client.logger.log(`Reason: => ${eventDetails.reason}
+	client.logger.log(`
+Reason: => ${eventDetails.reason}
 Code:   => ${eventDetails.code}
 Clean:  => ${eventDetails.wasClean}`, 'disconnect');
 	

@@ -15,8 +15,8 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: [],
-    permLevel: 'Bot Owner'
+    aliases: ['restart'],
+    permLevel: 'Bot Admin'
 };
 
 exports.help = {
