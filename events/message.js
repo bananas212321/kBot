@@ -15,7 +15,7 @@ module.exports = async (client, msg) => {
 	// Get the user or member's permission level from the elevation
 	const level = client.permlevel(msg);
 
-	const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
+	const cmd = await client.commands.get(command) || await client.commands.get(client.aliases.get(command));
 	if(!cmd) return;
 
 	if(!msg.guild && cmd.conf.guildOnly) {
