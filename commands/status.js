@@ -45,7 +45,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
                     .setColor(0xffffff)
                 return message.channel.send(embed);
             }
-            default: console.log('hey');
+            default: client.logger.log('Status.js error!', 'error')
         }
     });
 };
@@ -53,13 +53,13 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: [],
+    aliases: ['uptime'],
     permLevel: 'User'
 };
 
 exports.help = {
     name: 'status',
-    category: 'Miscelaneous',
+    category: 'Bot',
     description: 'Get the status for kBot.',
     usage: 'status'
 };
