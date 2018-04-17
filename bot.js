@@ -75,21 +75,31 @@ try {
     process.exit(1);
 }
 
-const http = require('http');
-const express = require('express');
-const app = express();
+const glitchUptime = async () => {
+    const http = require('http');
+    const express = require('express');
+    const app = express();
 
-const moment = require('moment');
-const chalk = require('chalk');
-const timestamp = `[${moment().format('YYYY-MM-DD HH:mm:ss')}]`;
+    const moment = require('moment');
+    const chalk = require('chalk');
+    const timestamp = `[${moment().format('YYYY-MM-DD HH:mm:ss')}]`;
 
-app.get('/', (request, response) => {
-    console.log(`${timestamp}: ${chalk.green('PING')}`);
-    response.sendStatus(200);
-});
+    app.get('/', (request, response) => {
+        console.log(`${timestamp}: ${chalk.green('PING')}`);
+        response.sendStatus(200);
+    });
 
-app.listen(process.env.PORT);
+    app.listen(process.env.PORT);
 
-setInterval(() => {
-    http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000);
+    setInterval(() => {
+        http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+    }, 280000);
+};
+
+try {
+    glitchUptime();
+} catch (e) {
+    client.logger.error(e.stack);
+    client.logger.error('Shutting down...');
+    process.exit(1);
+}
