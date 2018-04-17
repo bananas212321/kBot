@@ -1,6 +1,8 @@
 /* eslint-disable no-undef, no-unused-vars */
 
 module.exports = async (client, msg) => {
+	if(msg.author.bot) return;
+ 
 	const settings = msg.settings = await client.getGuildSettings(msg.guild);
     
 	const settings = msg.settings = client.getGuildSettings(msg.guild);
