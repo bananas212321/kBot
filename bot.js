@@ -12,14 +12,33 @@ const client = new Discord.Client();
 client.config = require('./config.js');
 client.logger = require('./util/logger.js');
 
-client.commands = new Enmap(); // Save the commands to an Enmap
-client.aliases = new Enmap(); // Save the aliases of the commands to an Enmap
+const loadEnmaps = async () => {
+    client.commands = await new Enmap(); // Save the commands to an Enmap
+    client.logger.log('Commands Enmap!', 'loaded');
 
-client.settings = new Enmap({
+    client.aliases = await new Enmap(); // Save the aliases of the commands to an Enmap
+    client.logger.log('Aliases Enmap!', 'loaded');
+
+    client.UserCooldowns = await new Enmap();
+    client.logger.log('Cooldowns Enmap!', 'loaded');
+
+    client.settings = await new Enmap({
     provider: new EnmapLevel({
-        name: 'settings'
+            name: 'settings',
+            dataDir: './.data'
     })
 });
+    client.logger.log('Settings persistent Enmap!', 'loaded');
+    console.log('');
+};
+
+try {
+    loadEnmaps();
+} catch (e) {
+    client.logger.error(`While trying to load Enmap(s) ${e.stack}`);
+    client.logger.error('Shutting down...');
+    process.exit(1);
+}
 
 require('./modules/functions.js')(client);
 
