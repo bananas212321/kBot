@@ -5,8 +5,6 @@ module.exports = async (client, msg) => {
  
 	const settings = msg.settings = await client.getGuildSettings(msg.guild);
     
-	const settings = msg.settings = client.getGuildSettings(msg.guild);
-    
 	if(msg.content.indexOf(settings.prefix) !== 0) return;
     
 	const args = msg.content.slice(settings.prefix.length).trim().split(/ +/g);
