@@ -2,8 +2,20 @@
 
 module.exports = async (client, msg) => {
 	if(msg.author.bot) return;
- 
-	const settings = msg.settings = await client.getGuildSettings(msg.guild);
+
+//  client.UserCooldowns = await client.UserCooldowns.filter(userID => userID.cooldown > 0);
+
+	let settings = msg.settings = await client.getGuildSettings(msg.guild);
+	
+	if(!settings) {
+		try {
+		 	client.settings.set(msg.guild.id, client.config.defaultSettings);
+		} catch (e) {
+		  	client.logger.error(e);
+		};
+	}
+	
+	settings = msg.settings = await client.getGuildSettings(msg.guild);
     
 	if(msg.content.indexOf(settings.prefix) !== 0) return;
     
@@ -17,14 +29,14 @@ module.exports = async (client, msg) => {
 	if(!cmd) return;
 
 	if(!msg.guild && cmd.conf.guildOnly) {
-		return msg.channel.send(':warning: Sorry, but this command can not be via private message. You can only use this in a guild.');
+		return msg.channel.send(':warning: Sorry, but this command can not be used via private message. You can only use this in a guild.');
 	};
 
 	if (level < client.levelCache[cmd.conf.permLevel]) {
 		if (settings.systemNotice === 'true') {
 		  	return msg.channel.send(`:warning: You do not have permission to use this command.
-	  		Your permission level is ${level} (${client.config.permLevels.find(l => l.level === level).name})
-	  		This command requires level ${client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`);
+Your permission level is ${level} (${client.config.permLevels.find(l => l.level === level).name})
+This command requires level ${client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`);
 		} else {
 		  	return;
 		}
