@@ -19,15 +19,12 @@ const loadEnmaps = async () => {
     client.aliases = await new Enmap(); // Save the aliases of the commands to an Enmap
     client.logger.log('Aliases Enmap!', 'loaded');
 
-    client.UserCooldowns = await new Enmap();
-    client.logger.log('Cooldowns Enmap!', 'loaded');
-
     client.settings = await new Enmap({
-    provider: new EnmapLevel({
+        provider: new EnmapLevel({
             name: 'settings',
             dataDir: './.data'
-    })
-});
+        })
+    });
     client.logger.log('Settings persistent Enmap!', 'loaded');
     console.log('');
 };
@@ -54,7 +51,6 @@ const init = async () => {
         const end = new Date().getTime();
         const time = end - start;
         client.logger.log(`${f} (Time taken: ~${time}ms)`, 'loaded');
-        /// if (response) console.log(response);
     });
     console.log('');
     // Then we load events, which will include our message and ready event.
@@ -76,10 +72,11 @@ const init = async () => {
     
     // Generate a cache of client permissions for pretty perms
     client.levelCache = {};
-    for (let i = 0; i < client.config.permLevels.length; i++) {
-        const thisLevel = client.config.permLevels[i];
+
+    client.config.permLevels.forEach(thisLevel => {
         client.levelCache[thisLevel.name] = thisLevel.level;
-    }
+        console.log(thisLevel.name);
+    }); 
   
     // Here we login the client.
     client.login(client.config.token);
@@ -94,17 +91,13 @@ try {
     process.exit(1);
 }
 
-const glitchUptime = async () => {
+try {
     const http = require('http');
     const express = require('express');
     const app = express();
 
-    const moment = require('moment');
-    const chalk = require('chalk');
-    const timestamp = `[${moment().format('YYYY-MM-DD HH:mm:ss')}]`;
-
     app.get('/', (request, response) => {
-        console.log(`${timestamp}: ${chalk.green('PING')}`);
+        client.logger.debug(`PING`);
         response.sendStatus(200);
     });
 
@@ -113,10 +106,6 @@ const glitchUptime = async () => {
     setInterval(() => {
         http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
     }, 280000);
-};
-
-try {
-    glitchUptime();
 } catch (e) {
     client.logger.error(e.stack);
     client.logger.error('Shutting down...');
