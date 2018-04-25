@@ -7,7 +7,7 @@ const config = {
   
 	// Bot Admins, level 9 by default. Array of user ID strings.
 	'admins': ['243584819693486081', '203656382493229056', '160621513035350016'],
-  
+
 	// Bot Support, level 8 by default. Array of user ID strings
 	'support': [],
   
@@ -22,8 +22,8 @@ const config = {
 	'defaultSettings' : { // Not currently in use!
 		'prefix': 'k!',
 		'modLogChannel': 'bot-log',
-		'modRole': 'Moderator',
-		'adminRole': 'Administrator',
+		'modRole': 'Unset',
+		'adminRole': 'Unset',
 		'systemNotice': 'true', // This gives a notice when a user tries to run a command that they do not have permission to use.
 		'welcomeChannel': 'welcome',
 		'welcomeMessage': 'Say hello to {{user}}, everyone!',
