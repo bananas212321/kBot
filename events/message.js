@@ -7,7 +7,7 @@ module.exports = async (client, msg) => {
 
 	let settings = msg.settings = await client.getGuildSettings(msg.guild);
 	
-	if(!settings) {
+	if(!settings && !msg.guild) {
 		try {
 		 	client.settings.set(msg.guild.id, client.config.defaultSettings);
 		} catch (e) {
