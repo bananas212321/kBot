@@ -20,6 +20,6 @@ exports.conf = {
 exports.help = {
     name: 'help',
     category: 'Bot',
-    description: 'Help, I\'ve fallen and I can\'t get up!',
+    description: 'Grab a list of kBot\'s commands, all in one tidy Rich Embed.',
     usage: 'help'
 };

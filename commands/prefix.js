@@ -37,6 +37,6 @@ exports.conf = {
 exports.help = {
     name: 'prefix',
     category: 'Guild',
-    description: 'Change the guild prefix.',
+    description: 'Change the prefix for this guild.',
     usage: 'prefix k$'
 };

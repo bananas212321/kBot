@@ -28,6 +28,6 @@ exports.conf = {
 exports.help = {
     name: 'listsettings',
     category: 'Guild',
-    description: 'null',
+    description: 'List the settings for this guild.',
     usage: 'listsettings'
 };

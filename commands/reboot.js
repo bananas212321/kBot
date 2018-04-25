@@ -22,6 +22,6 @@ exports.conf = {
 exports.help = {
     name: 'reboot',
     category: 'Config',
-    description: 'Reboot kBot.',
+    description: 'Reboot kBot. (Locked to the Bot Admins.)',
     usage: 'reboot'
 };

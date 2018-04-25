@@ -14,6 +14,6 @@ exports.conf = {
 exports.help = {
     name: 'ping',
     category: 'Bot',
-    description: 'It... like... pings. Then Pongs. And it\'s not Ping Pong.',
+    description: 'Get the bot\'s ping! (Not representative of your network connection.)',
     usage: 'ping'
 };
