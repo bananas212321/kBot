@@ -42,32 +42,9 @@ require('./modules/functions.js')(client);
 const init = async () => {
     // Here we load **commands** into memory, as a collection, so they're accessible
     // here and everywhere else.
-    const botCmdFiles = await readdir('./commands/bot');
-    const botConfigCmdFiles = await readdir('./commands/bot config');
-    const guildConfigCmdFiles = await readdir('./commands/guild config');
-
-    client.logger.log(`Loading ${botCmdFiles.length} bot commands.`, 'notice');
-    await botCmdFiles.forEach(async (f) => {
-        if (!f.endsWith('.js')) return;
-        const start = new Date().getTime();
-        const response = await client.loadCommand(f);
-        const end = new Date().getTime();
-        const time = end - start;
-        client.logger.log(`${f} (Time taken: ~${time}ms)`, 'loaded');
-    });
-    console.log('');
-    client.logger.log(`Loading ${botConfigCmdFiles.length} bot config commands.`, 'notice');
-    await botConfigCmdFiles.forEach(async (f) => {
-        if (!f.endsWith('.js')) return;
-        const start = new Date().getTime();
-        const response = await client.loadCommand(f);
-        const end = new Date().getTime();
-        const time = end - start;
-        client.logger.log(`${f} (Time taken: ~${time}ms)`, 'loaded');
-    });
-    console.log('');
-    client.logger.log(`Loading ${guildConfigCmdFiles.length} guild config commands.`, 'notice');
-    await guildConfigCmdFiles.forEach(async (f) => {
+    const cmdFiles = await readdir('./commands/');
+    client.logger.log(`Loading ${cmdFiles.length} commands.`, 'notice');
+    await cmdFiles.forEach(async (f) => {
         if (!f.endsWith('.js')) return;
         const start = new Date().getTime();
         const response = await client.loadCommand(f);
@@ -112,7 +89,7 @@ try {
     client.logger.error('Shutting down...');
     process.exit(1);
 }
-
+/*
 try {
     const http = require('http');
     const express = require('express');
@@ -133,3 +110,4 @@ try {
     client.logger.error('Shutting down...');
     process.exit(1);
 }
+*/
