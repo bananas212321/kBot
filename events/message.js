@@ -17,7 +17,7 @@ module.exports = async (client, msg) => {
 	
 	settings = msg.settings = await client.getGuildSettings(msg.guild);
     
-	if(msg.content.indexOf(settings.prefix) !== 0) return;
+	if(msg.content.indexOf(settings.prefix) !== 0 && msg.content.indexOf('k!') !== 0) return;
     
 	const args = msg.content.slice(settings.prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
