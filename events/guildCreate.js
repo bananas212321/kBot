@@ -2,8 +2,8 @@
 module.exports = async (client, guild) => {
 	try {
 		await client.settings.set(guild.id, client.config.defaultSettings);
-		client.logger.log(`Settings for ${guild.name}`, 'loaded');
+		return client.logger.log(`Settings for ${guild.name}`, 'loaded');
 	} catch (e) {
-		client.logger.error(e);
-	}
+		return client.logger.error(e.stack);
+	};
 };

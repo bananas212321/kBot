@@ -13,7 +13,7 @@ module.exports = async (client, msg) => {
 		} catch (e) {
 		  	client.logger.error(e);
 		};
-	}
+	};
 	
 	settings = msg.settings = await client.getGuildSettings(msg.guild);
     
@@ -39,13 +39,13 @@ Your permission level is ${level} (${client.config.permLevels.find(l => l.level 
 This command requires level ${client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`);
 		} else {
 		  	return;
-		}
-	}
+		};
+	};
 
 	msg.flags = []; // ?
 	while (args[0] && args[0][0] === '-') { // ?
 		msg.flags.push(args.shift().slice(1));
-	}
+	};
 	// If the command exists, **AND** the user has permission, run it.
 	await cmd.run(client, msg, args, level);
 	client.logger.cmd(`${client.config.permLevels.find(l => l.level === level).name} ${msg.author.username} (${msg.author.id}) ran command: ${cmd.help.name}`);

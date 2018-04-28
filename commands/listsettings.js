@@ -11,9 +11,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
             .setColor(0xffffff);
         message.channel.send(embed);
     } catch (e) {
-        message.reply(`:no_entry_sign: There was an error when trying to find the roles to change the settings for this guild.
-**Details: (26)** \`${e.stack}\``);
-        console.log(e.stack)
+        await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
 		return client.logger.error(e.stack);
     };
 };

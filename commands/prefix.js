@@ -16,14 +16,12 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
             client.logger.log(`Changed ${msg.guild.name} (${msg.guild.id})'s prefix from ${guild.prefix} to ${args[0]}`, 'loaded');
             return msg.reply(`:white_check_mark: Successfully changed the prefix from \`${guild.prefix}\` to \`${args[0]}\`.`);
         } catch (e) {
-            msg.reply(`:no_entry_sign: There was an error when trying to change the settings for this guild.
-**Details:** \`${e}\``);
-            return client.logger.error(e);
+            await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
+			return client.logger.error(e.stack);
         };
     } catch (e) {
-        msg.reply(`:no_entry_sign: There was an error when trying to change the settings for this guild.
-**Details:** \`${e}\``);
-		return client.logger.error(e);
+        await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
+		return client.logger.error(e.stack);
     };
 };
 

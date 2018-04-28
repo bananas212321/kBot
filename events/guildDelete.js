@@ -2,8 +2,8 @@
 module.exports = async (client, guild) => {
 	try {
 		await client.settings.delete(guild.id);
-		client.logger.log(`Settings for ${guild.name}`, 'unloaded');
+		return client.logger.log(`Settings for ${guild.name}`, 'unloaded');
 	} catch (e) {
-		client.logger.error(e);
-	}
+		return client.logger.error(e.stack);
+	};
 };

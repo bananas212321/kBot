@@ -9,6 +9,6 @@ module.exports = client => {
 		});
 		client.logger.debug(`Set playing message to ${playingMsg}`);
 	} catch (e) {
-		client.logger.error(e);
+		return client.logger.error(e);
 	}
 };
