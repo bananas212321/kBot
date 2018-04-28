@@ -11,34 +11,19 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
         if(!user) return msg.reply(':warning: I\'m unable to find that user.');
         if(!user.bannable) return msg.reply(':warning: I\'m unable to ban that user.');
         /* Kick the user */
-        if(!args[1]) {
-            try {                    let reason = 'No reason given.';
-                await msg.guild.ban(user, { reason: reason });
-                let embed = new RichEmbed()
-                    .setAuthor(`Banned ${user.user.tag}`, user.avatarURL)
-                    .addField('Reason', reason)
-                    .setTimestamp()
-                    .setColor(0xffffff);
-                return msg.channel.send(embed);
-            } catch (e) {
-                await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
-                return client.logger.error(e.stack);
-            };
-        } else {
-            try {
-                args.shift();
-                let reason = args.join(' ');
-                await msg.guild.ban(user, { reason: reason });
-                let embed = new RichEmbed()
-                    .setAuthor(`Banned ${user.user.tag}`, user.user.avatarURL)
-                    .addField('Reason', reason)
-                    .setTimestamp()
-                	.setColor(0xffffff);
-                return msg.channel.send(embed);
-			} catch (e) {
-				await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
-				return client.logger.error(e.stack);
-			};
+        args.shift();
+            try {                    
+            let reason = (!args[0]) ? 'No reason provided' : args.join(' ');
+            //await msg.guild.ban(user, { reason: reason });
+            let embed = new RichEmbed()
+                .setAuthor(`Banned ${user.user.tag}`, user.avatarURL)
+                .addField('Reason', reason)
+                .setTimestamp()
+                .setColor(0xffffff);
+            return msg.channel.send(embed);
+        } catch (e) {
+            await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
+            return client.logger.error(e.stack);
         };
     } catch (e) {
         await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);

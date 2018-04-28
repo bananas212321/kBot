@@ -12,35 +12,18 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
         if(!user.kickable) msg.reply(':warning: I\'m unable to kick that user.');
 
         /* Kick the user */
-        if(!args[1]) {
-            try {
-                let reason = 'No reason given.';
-                await user.kick(reason);
-                let embed = new RichEmbed()
-                    .setAuthor(`Kicked ${user.user.tag}`, user.avatarURL)
-                    .addField('Reason', reason)
-                    .setTimestamp()
-                    .setColor(0xffffff);
-                return msg.channel.send(embed);
-            } catch (e) {
-                await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
-		        return client.logger.error(e.stack);
-            };
-        } else {
-            try {
-                args.shift();
-                let reason = args.join(' ');
-                await user.kick(reason);
-                let embed = new RichEmbed()
-                    .setAuthor(`Kicked ${user.user.tag}`, user.user.avatarURL)
-                    .addField('Reason', reason)
-                    .setTimestamp()
-                    .setColor(0xffffff);
-                return msg.channel.send(embed);
-            } catch (e) {
-                await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
-		        return client.logger.error(e.stack);
-            };
+        try {
+            let reason = (!args[1]) ? 'No reason provided' : args.join(' ');
+            await user.kick(reason);
+            let embed = new RichEmbed()
+                .setAuthor(`Kicked ${user.user.tag}`, user.avatarURL)
+                .addField('Reason', reason)
+                .setTimestamp()
+                .setColor(0xffffff);
+            return msg.channel.send(embed);
+        } catch (e) {
+            await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
+	        return client.logger.error(e.stack);
         };
     } catch (e) {
         await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
