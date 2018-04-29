@@ -14,7 +14,7 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
         args.shift();
             try {                    
             let reason = (!args[0]) ? 'No reason provided' : args.join(' ');
-            //await msg.guild.ban(user, { reason: reason });
+            await msg.guild.ban(user, { reason: reason });
             let embed = new RichEmbed()
                 .setAuthor(`Banned ${user.user.tag}`, user.avatarURL)
                 .addField('Reason', reason)

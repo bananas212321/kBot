@@ -4,7 +4,7 @@ exports.run = (client, msg, args, level) => { // eslint-disable-line no-unused-v
 	let embed = new RichEmbed()
 		.setAuthor('Stats for kBot', client.user.avatarURL)
 		.addField('Users', client.users.size, true).addField('Guilds', client.guilds.size, true).addField('Channels', client.channels.size, true)
-		.addField('Ping to WebSocket', `${client.ping}ms`)
+		.addField('Ping to WebSocket', `${Math.floor(client.ping)}ms`)
 		.addField('Last time logged in', client.readyAt)
 		.setTimestamp()
 		.setColor(0xffffff);
