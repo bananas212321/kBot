@@ -4,12 +4,12 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     try {
         const guild = await client.settings.get(message.guild.id);
         const embed = new RichEmbed()
-            .setAuthor(`${message.guild.name}'s settings`, message.guild.avatarURL)
+            .setAuthor(`${message.guild.name}'s settings`, message.guild.iconURL)
             .addField('Prefix', guild.prefix)
             .addField('Administrator Role', guild.adminRole, true).addField('Moderator Role', guild.modRole, true)
             .setTimestamp()
             .setColor(0xffffff);
-        message.channel.send(embed);
+        return message.channel.send(embed);
     } catch (e) {
         await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
 		return client.logger.error(e.stack);

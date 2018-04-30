@@ -1,7 +1,6 @@
 exports.run = async (client, msg, args, level) => { // eslint-disable-line no-unused-vars
 	try {
 		const guild = await client.settings.get(msg.guild.id);
-    	console.log(args.join(' '));
 		let role = await msg.guild.roles.find('name', args.join(' '));
 		if(!role) {
 			role = await msg.guild.roles.find('id', args[0]);
