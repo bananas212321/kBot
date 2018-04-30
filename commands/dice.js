@@ -11,8 +11,8 @@ exports.run = (client, msg, args, level) => {
 		let values = [];
 		for (let i = 0;; i++) {
 			if (i == rolls) break;
-      let num = Math.floor(Math.random() * sides);
-      values.push(num + 1);
+      			let num = Math.floor(Math.random() * sides);
+      			values.push(num + 1);
 		};
 		let embed = new RichEmbed()
 			.setAuthor('Dice Rolls', client.user.avatarURL)
