@@ -5,12 +5,14 @@ exports.run = (client, msg, args, level) => {
 	let sides = (!args[0] || args[0] <= 0) ? 6 : parseInt(args[0]);
 	let rolls = (!args[1] || args[1] > 15) ? 1 : parseInt(args[1]);
 	if(rolls == 1) {
-		return msg.reply(`You rolled a **${Math.floor(Math.random() * sides)}** :game_die:`);
+    let num = Math.floor(Math.random() * sides);
+    return msg.reply(`You rolled a **${num + 1}** :game_die:`);
 	} else {
 		let values = [];
 		for (let i = 0;; i++) {
 			if (i == rolls) break;
-			values.push(Math.floor(Math.random() * sides));
+      let num = Math.floor(Math.random() * sides);
+      values.push(num + 1);
 		};
 		let embed = new RichEmbed()
 			.setAuthor('Dice Rolls', client.user.avatarURL)
