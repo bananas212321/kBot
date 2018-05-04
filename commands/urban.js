@@ -23,13 +23,13 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
 exports.conf = {
 	enabled: true,
 	guildOnly: false,
-	aliases: ['ud', 'urbandict'],
+	aliases: ['ud', 'urbandictionary'],
 	permLevel: 'User'
 };
 
 exports.help = {
 	name: 'urban',
 	category: 'Bot',
-	description: 'Grab the definition of anyword from the Urban Dictionary.',
+	description: 'Grab the definition of any word from the Urban Dictionary.',
 	usage: 'urban term'
 };
