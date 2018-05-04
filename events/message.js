@@ -1,9 +1,7 @@
 /* eslint-disable no-undef, no-unused-vars */
 
 module.exports = async (client, msg) => {
-	if(msg.author.bot) return;
-
-//  client.UserCooldowns = await client.UserCooldowns.filter(userID => userID.cooldown > 0);
+	if(msg.author.bot) return msg.reply(':warning: Bots can\'t run commands!');
 
 	let settings = msg.settings = await client.getGuildSettings(msg.guild);
 	

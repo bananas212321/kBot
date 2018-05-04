@@ -1,6 +1,6 @@
 const { RichEmbed } = require('discord.js');
 
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, msg, args, level) => { // eslint-disable-line no-unused-vars
     try {
         let embed = new RichEmbed()
             .setAuthor('kBot Commands List', client.user.avatarURL).setColor(0xffffff);
@@ -29,8 +29,8 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
                 };
             });
             embed.setTimestamp();
-        await message.author.send(embed);
-        return message.reply('I have messages you a list of commands, check your DMs!');
+        await msg.author.send(embed);
+        return msg.reply('I have messages you a list of commands, check your DMs!');
     } catch (e) {
         await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
 		return client.logger.error(e.stack);
