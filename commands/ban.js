@@ -10,9 +10,11 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
         let user = await msg.guild.member(msg.mentions.users.first());
         if(!user) return msg.reply(':warning: I\'m unable to find that user.');
         if(!user.bannable) return msg.reply(':warning: I\'m unable to ban that user.');
+        if(msg.guild.member(msg.author).highestRole.calculatedPosition <= user.highestRole.calculatedPosition) return msg.reply(':no_entry_sign: You\'re unable to kick users with a higher/equal role than you!');
+        
         /* Kick the user */
         args.shift();
-            try {                    
+        try {                    
             let reason = (!args[0]) ? 'No reason provided' : args.join(' ');
             await msg.guild.ban(user, { reason: reason });
             let embed = new RichEmbed()

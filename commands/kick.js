@@ -7,9 +7,10 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
         if(!msg.mentions.users.first()) return msg.reply(':warning: No user to kick was provided!');
 
         /* Make sure that you can kick the user */
-        let user = await msg.guild.member(msg.mentions.users.first() || args[0]);
-        if(!user) msg.reply(':warning: I\'m unable to find that user.');
-        if(!user.kickable) msg.reply(':warning: I\'m unable to kick that user.');
+        let user = await msg.guild.member(msg.mentions.users.first());
+        if(!user) return msg.reply(':warning: I\'m unable to find that user.');
+        if(!user.kickable) return msg.reply(':warning: I\'m unable to kick that user.');
+        if(msg.guild.member(msg.author).highestRole.calculatedPosition <= user.highestRole.calculatedPosition) return msg.reply(':no_entry_sign: You\'re unable to kick users with a higher/equal role than you!');
 
         /* Kick the user */
         try {
@@ -23,11 +24,11 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
             return msg.channel.send(embed);
         } catch (e) {
             await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
-	        return client.logger.error(e.stack);
+	          return client.logger.error(e.stack);
         };
     } catch (e) {
         await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
-		return client.logger.error(e.stack);
+		    return client.logger.error(e.stack);
     };
 };
 
