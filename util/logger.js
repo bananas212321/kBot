@@ -42,7 +42,7 @@ exports.log = (content, type = 'log') => {
 		return console.log(`${timestamp} ${chalk.black.bgRed(type.toUpperCase())} 
 ${content}`);
 	}
-	default: throw new TypeError('Logger type must be either warn, debug, log, ready, cmd or error.');
+	default: throw new TypeError('Logger type must be either warn, debug, log, ready, cmd, notice, loaded, unloaded, reconnecting, disconnect or error.');
 	}
 }; 
 
