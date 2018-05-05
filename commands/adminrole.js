@@ -20,7 +20,7 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
 				return msg.reply(`:white_check_mark: Successfully changed the administrator role to \`${role.name}\`.`);
 			} catch (e) {
 				await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
-                return client.error(e.stack);
+                return client.logger.error(e.stack);
 			};
 		};
 	} catch (e) {
