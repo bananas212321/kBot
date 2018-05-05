@@ -1,7 +1,7 @@
 /* eslint-disable no-undef, no-unused-vars */
 
 module.exports = async (client, msg) => {
-	if(msg.author.bot) return msg.reply(':warning: Bots can\'t run commands!');
+	if(msg.author.bot && msg.content.startsWith('k!') && msg.author !== client.user) return msg.reply(':warning: Bots can\'t run commands!');
 
 	let settings = msg.settings = await client.getGuildSettings(msg.guild);
 	
@@ -35,9 +35,7 @@ module.exports = async (client, msg) => {
 		  	return msg.channel.send(`:warning: You do not have permission to use this command.
 Your permission level is ${level} (${client.config.permLevels.find(l => l.level === level).name})
 This command requires level ${client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`);
-		} else {
-		  	return;
-		};
+		} else return;
 	};
 
 	msg.flags = []; // ?
