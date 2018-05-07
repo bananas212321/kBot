@@ -1,4 +1,5 @@
 const { RichEmbed } = require('discord.js');
+const moment = require('moment');
 
 exports.run = (client, msg, args, level) => { // eslint-disable-line no-unused-vars
 	let embed = new RichEmbed()
@@ -9,9 +10,10 @@ exports.run = (client, msg, args, level) => { // eslint-disable-line no-unused-v
 		.addField('Number of channels', msg.guild.channels.size, true)
 		.addField('Number of members', msg.guild.memberCount, true)
 		.addField('Number of roles', msg.guild.roles.size, true)
-		.addField('Region', `${msg.guild.region.charAt(0).toUpperCase()}${msg.guild.region.substr(1).toLowerCase()}`)
-		.addField('Date created', msg.guild.createdAt)
+		.addField('Region', `${msg.guild.region.charAt(0).toUpperCase()}${msg.guild.region.substr(1).toLowerCase()}`, true)
+		.addField('Date created', moment(msg.guild.createdAt).format('ddd Do MMM HH:MM:SS A'), true)
 		.setImage(msg.guild.iconURL)
+		.setFooter('All data is grabbed from the Discord API.', msg.guild.iconURL)
 		.setColor(0xffffff);
 	return msg.channel.send(embed);
 };
