@@ -17,7 +17,7 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
             let reason = (!args[1]) ? 'No reason provided' : args.join(' ');
             await user.kick(reason);
             let embed = new RichEmbed()
-                .setAuthor(`Kicked ${user.user.tag}`, user.avatarURL)
+                .setAuthor(`Kicked ${user.user.tag}`, user.user.avatarURL)
                 .addField('Reason', reason)
                 .setTimestamp()
                 .setColor(0xffffff);
