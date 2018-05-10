@@ -30,7 +30,7 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
             });
             embed.setTimestamp();
         await msg.author.send(embed);
-        return msg.reply('I have messages you a list of commands, check your DMs!');
+        return msg.reply(':white_check_mark: I have just messaged you a list of commands, check your DMs!');
     } catch (e) {
         await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
 		return client.logger.error(e.stack);
