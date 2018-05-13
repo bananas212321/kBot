@@ -1,3 +1,5 @@
+const prettyMs = require('pretty-ms');
+
 module.exports = (client, debug) => { /* eslint-disable no-console */
 	if(debug.includes(client.config.token)) return;
 	if(debug.startsWith('[ws] [connection] Heartbeat acknowledged, ')) {
@@ -6,12 +8,9 @@ module.exports = (client, debug) => { /* eslint-disable no-console */
 		for (let key in used) {
 			client.logger.debug(`- ${key.toUpperCase()}: ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
 		}
-		let uptimeSec = Math.floor(process.uptime());
-		let uptimeMin = Math.floor(process.uptime() / 60);
-		let uptimeHour = Math.floor(uptimeMin / 60);
-		client.logger.debug(`Uptime: ${uptimeHour}:${uptimeMin}:${uptimeSec}`);
+		client.logger.debug(`Uptime: ${prettyMs(client.uptime)}`);
 		return console.log('');
 	} else {
-		client.logger.debug(debug);
+		return client.logger.debug(debug);
 	}
 };
