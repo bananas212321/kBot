@@ -3,17 +3,17 @@
 module.exports = async (client, msg) => {
 	if(msg.author.bot && msg.content.startsWith('k!') && msg.author !== client.user) return msg.reply(':warning: Bots can\'t run commands!');
 
-	let settings = msg.settings = await client.getGuildSettings(msg.guild);
-	
-	if(!settings && !msg.guild) {
+	let settings = msg.settings = await client.settings.get(msg.guild.id);
+
+	if(!settings) {
 		try {
-		 	client.settings.set(msg.guild.id, client.config.defaultSettings);
+			await client.settings.set(msg.guild.id, client.config.defaultSettings);
+			settings = await client.settings.get(msg.guild.id);
+			client.logger.log(`Loaded settings for ${msg.guild.name}`, 'loaded');
 		} catch (e) {
-		  	client.logger.error(e);
+		  	return client.logger.error(e.stack);
 		};
 	};
-	
-	settings = msg.settings = await client.getGuildSettings(msg.guild);
     
 	if(msg.content.indexOf(settings.prefix) !== 0 && msg.content.indexOf('k!') !== 0) return;
     
@@ -27,7 +27,7 @@ module.exports = async (client, msg) => {
 	if(!cmd) return;
 
 	if(!msg.guild && cmd.conf.guildOnly) {
-		return msg.channel.send(':warning: Sorry, but this command can not be used via private message. You can only use this in a guild.');
+		return msg.channel.send(':warning: Sorry, but this command can not be used via private message/DM. You can only use this in a guild.');
 	};
 
 	if (level < client.levelCache[cmd.conf.permLevel]) {
