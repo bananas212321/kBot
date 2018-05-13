@@ -61,4 +61,7 @@ typings/
 .env
 
 .DS_Store
+
+# vscode stuff
 .vscode/launch.json
+.vscode/settings.json
