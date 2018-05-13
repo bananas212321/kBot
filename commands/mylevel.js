@@ -1,6 +1,12 @@
 exports.run = async (client, msg, args, level) => {
-    const friendly = await client.config.permLevels.find(l => l.level === level).name;
-    return msg.reply(`Your permission level is: ${level} - ${friendly}`);
+    try {
+        const friendly = await client.config.permLevels.find(l => l.level === level).name;
+        return msg.reply(`Your permission level is: ${level} - ${friendly}`);
+    } catch (e) {
+        await msg.reply(':no_entry_sign: Oops! Something went wrong and an unexpected error occurred!');
+        return client.logger.error(e.stack);
+    }
+
 };
 
 exports.conf = {

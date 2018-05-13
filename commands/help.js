@@ -32,7 +32,7 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
         await msg.author.send(embed);
         return msg.reply(':white_check_mark: I have just messaged you a list of commands, check your DMs!');
     } catch (e) {
-        await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
+        await msg.reply(':no_entry_sign: Oops! Something went wrong and an unexpected error occurred!');
 		return client.logger.error(e.stack);
     };
 };

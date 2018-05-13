@@ -24,12 +24,12 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
                 .setColor(0xffffff);
             return msg.channel.send(embed);
         } catch (e) {
-            await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
+            await msg.reply(':no_entry_sign: Oops! Something went wrong and an unexpected error occurred!');
             return client.logger.error(e.stack);
         };
     } catch (e) {
-        await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
-        return client.logger.error(e.stack);
+        await msg.reply(':no_entry_sign: Oops! Something went wrong and an unexpected error occurred!');
+		return client.logger.error(e.stack);
     };
 };
 

@@ -19,7 +19,7 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
 				client.logger.log(`Changed ${msg.guild.name} (${msg.guild.id})'s moderator role to ${role.name}`, 'loaded');
 				return msg.reply(`:white_check_mark: Successfully changed the moderator role to \`${role.name}\`.`);
 			} catch (e) {
-				await msg.reply(`:no_entry_sign: An unexpected error occurred!\n**Details:**\n\`\`\`diff\n- ${e.stack}\`\`\``);
+				await msg.reply(':no_entry_sign: Oops! Something went wrong and an unexpected error occurred!');
 				return client.logger.error(e.stack);
 			};
 		};

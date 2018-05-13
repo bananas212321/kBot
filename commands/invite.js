@@ -1,6 +1,12 @@
 exports.run = async (client, msg, args, level) => { // eslint-disable-line no-unused-vars
-    const invite = await client.generateInvite(['ADMINISTRATOR']);
-    return msg.author.send(`**Here is your invite:** ${invite}`);
+    try {
+        const invite = await client.generateInvite(['ADMINISTRATOR']);
+        return msg.author.send(`**Here is your invite:** ${invite}`);
+    } catch (e) {
+        await msg.reply(':no_entry_sign: Oops! Something went wrong and an unexpected error occurred!');
+		return client.logger.error(e.stack);
+    }
+
 };
 
 exports.conf = {
