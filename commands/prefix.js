@@ -2,9 +2,9 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
     try {
         const guild = await client.settings.get(msg.guild.id);
         if(!args[0]) return msg.reply(':warning: Invalid argument!');
-        if(args[0] > 2) return msg.reply(':warning: Invalid argument!');
+        if(args[0] > 3) return msg.reply(':warning: The prefix can not be more than 3 characters long.');
         try {
-            client.settings.set(msg.guild.id, {
+            await client.settings.set(msg.guild.id, {
                 prefix: args[0],
                 modlogChannel: guild.modlogChannel,
                 modRole: guild.modRole,

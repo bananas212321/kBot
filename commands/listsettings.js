@@ -8,6 +8,7 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
             .addField('Prefix', guild.prefix)
             .addField('Administrator Role', guild.adminRole, true).addField('Moderator Role', guild.modRole, true)
             .setTimestamp()
+            .setFooter(`${msg.guild.name}'s settings`)
             .setColor(0xffffff);
         return msg.channel.send(embed);
     } catch (e) {
