@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Geekz45679/kBot-Rebooted.git"
+    "url": "git+https://github.com/Geekz45679/kBot.git"
   },
   "author": "Bradley Ziya",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Geekz45679/kBot-Rebooted/issues"
+    "url": "https://github.com/Geekz45679/kBot/issues"
   },
-  "homepage": "https://github.com/Geekz45679/kBot-Rebooted#readme",
+  "homepage": "https://github.com/Geekz45679/kBot",
   "dependencies": {
     "chalk": "^2.3.0",
     "discord.js": "^11.3.2",
