@@ -26,7 +26,7 @@ const loadEnmaps = async () => {
         })
     });
     client.logger.log('Settings persistent Enmap!', 'loaded');
-    console.log('');
+    console.log('\u200b');
 };
 
 try {
@@ -52,7 +52,7 @@ const init = async () => {
         const time = end - start;
         client.logger.log(`${f} (Time taken: ~${time}ms)`, 'loaded');
     });
-    console.log('');
+    console.log('\u200b');
     // Then we load events, which will include our message and ready event.
     const evtFiles = await readdir('./events/');
     client.logger.log(`Loading ${evtFiles.length} events.`, 'notice');
@@ -68,7 +68,7 @@ const init = async () => {
         client.on(eventName, event.bind(null, client));
         delete require.cache[require.resolve(`./events/${f}`)];
     });
-    console.log('');
+    console.log('\u200b');
     
     // Generate a cache of client permissions for pretty perms
     client.levelCache = {};

@@ -9,7 +9,7 @@ module.exports = (client, debug) => { /* eslint-disable no-console */
 			client.logger.debug(`- ${key.toUpperCase()}: ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
 		}
 		client.logger.debug(`Uptime: ${prettyMs(client.uptime)}`);
-		return console.log('');
+		return console.log('\u200b');
 	} else {
 		return client.logger.debug(debug);
 	}
