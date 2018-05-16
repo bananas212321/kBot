@@ -3,9 +3,11 @@
 module.exports = async (client, msg) => {
 	if(msg.author.bot && msg.content.startsWith('k!') && msg.author !== client.user) return msg.reply(':warning: Bots can\'t run commands!');
 
-	let settings = msg.settings = await client.settings.get(msg.guild.id);
+	let settings;
 
-	if(!settings) {
+	if(msg.guild) settings = msg.settings = await client.settings.get(msg.guild.id);
+
+	if(!settings && msg.guild) {
 		try {
 			await client.settings.set(msg.guild.id, client.config.defaultSettings);
 			settings = await client.settings.get(msg.guild.id);
@@ -13,7 +15,9 @@ module.exports = async (client, msg) => {
 		} catch (e) {
 		  	return client.logger.error(e.stack);
 		};
-	};
+	} else if(!msg.guild) {
+		settings = { prefix: 'k!' };
+	}
     
 	if(msg.content.indexOf(settings.prefix) !== 0 && msg.content.indexOf('k!') !== 0) return;
     
