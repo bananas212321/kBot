@@ -9,6 +9,7 @@ exports.run = async (client, msg, args, level) => { // eslint-disable-line no-un
         client.logger.log(`Unloaded ${client.commands.array().length} commands...`, 'unloaded');
         await msg.channel.send(`:white_check_mark: **Unloaded all ${client.commands.array().length} commands.**`);
         await msg.channel.send(':warning: **Shutting down now...**');
+        await client.setStatus('invisible');
         await client.logger.warn('Shutting down...');
         return process.exit(0);
     } catch (e) {
