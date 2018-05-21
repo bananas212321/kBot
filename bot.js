@@ -1,3 +1,7 @@
+/** TODO: 
+ * Have a look at this: https://github.com/oliver-moran/jimp
+ */ 
+
 /* eslint-disable no-console, no-undef */
 const Discord = require('discord.js');
 
@@ -84,6 +88,27 @@ const init = async () => {
 
 try {
     init();
+} catch (e) {
+    client.logger.error(e.stack);
+    client.logger.error('Shutting down...');
+    process.exit(1);
+}
+
+try {
+    const http = require('http');
+    const express = require('express');
+    const app = express();
+
+    app.get('/', (request, response) => {
+        client.logger.debug('PING');
+        response.sendStatus(200);
+    });
+
+    app.listen(process.env.PORT);
+
+    setInterval(() => {
+        http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+    }, 270000);
 } catch (e) {
     client.logger.error(e.stack);
     client.logger.error('Shutting down...');

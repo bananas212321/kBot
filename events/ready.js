@@ -12,20 +12,6 @@ module.exports = async (client) => {
 		client.user.setActivity(`k!help | ${client.users.size} users in ${client.channels.size} channels for ${client.guilds.size} guilds`, {
 			type: 'LISTENING'
 		});
-		const http = require('http');
-		const express = require('express');
-		const app = express();
-
-		app.get('/', (request, response) => {
-			client.logger.debug('PING');
-			response.sendStatus(200);
-		});
-
-		app.listen(process.env.PORT);
-
-		setInterval(() => {
-			http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-		}, 270000);
 	} catch (e) {
 		return client.logger.error(e);
 	}
