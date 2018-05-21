@@ -1,13 +1,13 @@
 /* eslint-disable no-undef, no-unused-vars */
 
 module.exports = async (client, msg) => {
-	if(msg.author.bot && msg.content.startsWith('k!') && msg.author !== client.user) return msg.reply(':warning: Bots can\'t run commands!');
+	if(msg.author.bot && msg.content.startsWith('k!') && msg.author !== client.user && client.user.presence.status !== 'invisible') return msg.reply(':warning: Bots can\'t run commands!');
 
 	let settings;
 
 	if(msg.guild) settings = msg.settings = await client.settings.get(msg.guild.id);
 
-	if(!settings && msg.guild) {
+	if(!settings && msg.guild) {			
 		try {
 			await client.settings.set(msg.guild.id, client.config.defaultSettings);
 			settings = await client.settings.get(msg.guild.id);
