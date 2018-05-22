@@ -6,7 +6,7 @@
 const Discord = require('discord.js');
 
 const Enmap = require('enmap');
-const EnmapLevel = require('enmap-level');
+const EnmapSQLite = require('enmap-sqlite');
 
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
@@ -23,12 +23,12 @@ const loadEnmaps = async () => {
     client.aliases = await new Enmap(); // Save the aliases of the commands to an Enmap
     client.logger.log('Aliases Enmap!', 'loaded');
 
-    client.settings = await new Enmap({
-        provider: new EnmapLevel({
-            name: 'settings',
-            dataDir: './.data'
-        })
+    client.settings = new Enmap({
+        provider: new EnmapSQLite({
+            name: 'Guild Settings'
+        }) 
     });
+
     client.logger.log('Settings persistent Enmap!', 'loaded');
     console.log('\u200b');
 };
