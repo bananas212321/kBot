@@ -47,7 +47,7 @@ const init = async () => {
     // Here we load **commands** into memory, as a collection, so they're accessible
     // here and everywhere else.
     const cmdFiles = await readdir('./commands/');
-    client.logger.log(`Loading ${cmdFiles.length} commands.`, 'notice');
+    client.logger.log(`Loading ${cmdFiles.length} commands...`, 'notice');
     await cmdFiles.forEach(async (f) => {
         if (!f.endsWith('.js')) return;
         const start = new Date().getTime();
@@ -59,7 +59,7 @@ const init = async () => {
     console.log('\u200b');
     // Then we load events, which will include our message and ready event.
     const evtFiles = await readdir('./events/');
-    client.logger.log(`Loading ${evtFiles.length} events.`, 'notice');
+    client.logger.log(`Loading ${evtFiles.length} events...`, 'notice');
 
     await evtFiles.forEach(async (f) => {
         const eventName = f.split('.')[0];
