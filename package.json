@@ -24,7 +24,7 @@
     "discord.js": "^11.3.2",
     "dotenv": "^6.0.0",
     "enmap": "^2.6.1",
-    "enmap-sqlite": "^2.0.1",
+    "enmap-level": "^2.1.0",
     "express": "^4.16.3",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",

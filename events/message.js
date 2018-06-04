@@ -7,7 +7,7 @@ module.exports = async (client, msg) => {
 
 	if(msg.guild) settings = msg.settings = await client.settings.get(msg.guild.id);
 
-	if(!settings && msg.guild) {			
+	if(!settings && msg.guild) {
 		try {
 			await client.settings.set(msg.guild.id, client.config.defaultSettings);
 			settings = await client.settings.get(msg.guild.id);
@@ -15,12 +15,12 @@ module.exports = async (client, msg) => {
 		} catch (e) {
 		  	return client.logger.error(e.stack);
 		};
-	} else if(!msg.guild) {
+	} else {
 		settings = { prefix: 'k!' };
 	}
-    
+
 	if(msg.content.indexOf(settings.prefix) !== 0 && msg.content.indexOf('k!') !== 0) return;
-    
+
 	const args = msg.content.slice(settings.prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 
