@@ -40,5 +40,5 @@ exports.help = {
     name: 'adminrole',
     category: 'Guild',
     description: 'Set the admin role for this guild.',
-    usage: 'adminrole (name or ID of role)'
+    usage: 'adminrole <role name>'
 };

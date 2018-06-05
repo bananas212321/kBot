@@ -48,5 +48,5 @@ exports.help = {
 	name: 'help',
 	category: 'Bot',
 	description: 'Displays all the available commands for your permission level.',
-	usage: 'help [command]'
+	usage: 'help <?command name/alias>'
 };

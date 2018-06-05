@@ -35,5 +35,5 @@ exports.help = {
     name: 'purge',
     category: 'Moderation',
     description: 'Delete msgs from a channel in bulk.',
-    usage: 'purge'
+    usage: 'purge <amount>'
 };

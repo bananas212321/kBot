@@ -40,5 +40,5 @@ exports.help = {
     name: 'modrole',
     category: 'Guild',
     description: 'Set the moderator role for this guild.',
-    usage: 'modrole (name or ID of role)'
+    usage: 'modrole <role name>'
 };

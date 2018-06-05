@@ -15,7 +15,7 @@ exports.run = async (client, msg, args, level) => {
 				let num = Math.floor(Math.random() * sides);
 				values.push(num + 1);
 			};
-			let embed = new RichEmbed().setAuthor('Dice Rolls', client.user.avatarURL)
+			let embed = new RichEmbed().setAuthor('Dice Rolls', client.user.avatarURL);
 			values.forEach((val, i, arr) => {
 				embed.addField(`Dice roll #${i + 1}`, `${val}`, true);
 			});
@@ -41,5 +41,5 @@ exports.help = {
 	name: 'dice',
 	category: 'Fun',
 	description: 'Roll a dice.',
-	usage: 'dice <sides> <number of values (max: 15, def: 1)>'
+	usage: 'dice <sides> <?number of values (max: 15, def: 1)>'
 };

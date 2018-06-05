@@ -39,5 +39,5 @@ exports.help = {
     name: 'copypasta',
     category: 'Fun',
     description: 'Want to use a copypasta on the go but too lazy to search for it on the internet? Look no further. This command will do just that.',
-    usage: 'copypasta (copypasta name, e.g. oceanman)'
+    usage: 'copypasta <name>'
 };

@@ -68,5 +68,5 @@ exports.help = {
     name: 'weather',
     category: 'Bot',
     description: 'Grab the weather for a specified location.',
-    usage: 'weather <C/F> <location: e.g. Melbourne>'
+    usage: 'weather <C/F> <location>'
 };

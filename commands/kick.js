@@ -43,5 +43,5 @@ exports.help = {
     name: 'kick',
     category: 'Moderation',
     description: 'Kick a user from the guild.',
-    usage: 'kick @user#0001 for being annoying'
+    usage: 'kick <@user> <reason>'
 };
