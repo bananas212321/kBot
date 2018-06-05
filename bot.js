@@ -1,12 +1,11 @@
 /** TODO: 
- * Have a look at this: https://github.com/oliver-moran/jimp
- */ 
-
+ * Check out: https://www.npmjs.com/package/trivia-api
+ */
 /* eslint-disable no-console, no-undef */
 const Discord = require('discord.js');
 
 const Enmap = require('enmap');
-const EnmapSQLite = require('enmap-sqlite');
+const EnmapLevel = require('enmap-level');
 
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
@@ -24,8 +23,9 @@ const loadEnmaps = async () => {
     client.logger.log('Aliases Enmap!', 'loaded');
 
     client.settings = new Enmap({
-        provider: new EnmapSQLite({
-            name: 'Guild Settings'
+        provider: new EnmapLevel({
+            name: 'Guild Settings',
+            dataDir: './data'
         }) 
     });
 
@@ -108,7 +108,7 @@ try {
 
     setInterval(() => {
         http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-    }, 270000);
+    }, 280000);
 } catch (e) {
     client.logger.error(e.stack);
     client.logger.error('Shutting down...');
